@@ -7,7 +7,7 @@ CREATE TABLE Coordinate (
     id int NOT NULL AUTO_INCREMENT,
     latitude double NOT NULL,
     longitude double NOT NULL,
-    Zone_id int NULL,
+    Zone_id int NOT NULL,
     CONSTRAINT Coordinate_pk PRIMARY KEY (id)
 );
 
@@ -18,23 +18,17 @@ CREATE TABLE FavoriteZone (
     CONSTRAINT FavoriteZone_pk PRIMARY KEY (User_id,Zone_id)
 );
 
--- Table: Publication
-CREATE TABLE Publication (
-    id int NOT NULL AUTO_INCREMENT,
-    CONSTRAINT Publication_pk PRIMARY KEY (id)
-);
-
 -- Table: Report
 CREATE TABLE Report (
     id int NOT NULL AUTO_INCREMENT,
     datereport datetime NOT NULL,
-    img varchar(50) NULL,
-    comment varchar(50) NULL,
-    weather char(20) NOT NULL,
+    weather varchar(20) NOT NULL,
     User_id int NOT NULL,
     Zone_id int NOT NULL,
-    Coordinate_id int NOT NULL,
-    Publication_id int NULL,
+    latitude double NOT NULL,
+    longitude double NOT NULL,
+	dislike int NOT NULL,
+    like int NOT NULL,
     CONSTRAINT Report_pk PRIMARY KEY (id)
 );
 
@@ -46,6 +40,7 @@ CREATE TABLE Users (
     password varchar(20) NOT NULL,
     img varchar(100) NOT NULL,
     confpasswd varchar(20) NOT NULL,
+	points int NOT NULL,
     CONSTRAINT User_pk PRIMARY KEY (id)
 );
 
@@ -53,7 +48,7 @@ CREATE TABLE Users (
 CREATE TABLE Zones (
     id int NOT NULL AUTO_INCREMENT,
     number int NOT NULL,
-    name char(100) NOT NULL,
+    name varchar(100) NOT NULL,
     CONSTRAINT id PRIMARY KEY (id)
 );
 
@@ -73,14 +68,6 @@ ALTER TABLE FavoriteZone ADD CONSTRAINT FavoriteZone_Zone FOREIGN KEY FavoriteZo
     REFERENCES Zones (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
-
--- Reference: Report_Coordinate (table: Report)
-ALTER TABLE Report ADD CONSTRAINT Report_Coordinate FOREIGN KEY Report_Coordinate (Coordinate_id)
-    REFERENCES Coordinate (id);
-
--- Reference: Report_Publication (table: Report)
-ALTER TABLE Report ADD CONSTRAINT Report_Publication FOREIGN KEY Report_Publication (Publication_id)
-    REFERENCES Publication (id);
 
 -- Reference: Report_User (table: Report)
 ALTER TABLE Report ADD CONSTRAINT Report_User FOREIGN KEY Report_User (User_id)

@@ -1,11 +1,11 @@
-insert into Users (email,name,password,img,confpasswd)
-values("juan.arevalo.merchan@gmail.com","Juan Pablo","123","motos/esp/images/Moto2.png","123");
+insert into Users (email,name,password,img,confpasswd,points)
+values("juan.arevalo.merchan@gmail.com","Juan Pablo","123","motos/esp/images/Moto2.png","123",10);
 
-insert into Users (email,name,password,img,confpasswd)
-values("prueba@mail.com","Laura","password","http://www.your3dsource.com/images/facepic1.jpeg","password");
+insert into Users (email,name,password,img,confpasswd,points)
+values("prueba@mail.com","Laura","password","http://www.your3dsource.com/images/facepic1.jpeg","password",5);
 
-insert into Users (email,name,password,img,confpasswd)
-values("prueba2@mail.com","Lucas","password","http://www.your3dsource.com/images/facepic2.jpeg","password");
+insert into Users (email,name,password,img,confpasswd,points)
+values("prueba2@mail.com","Lucas","password","http://www.your3dsource.com/images/facepic2.jpeg","password",0);
 
 insert into Zones (id,name,number)
 values(1,"Usaquen",1);
@@ -46,10 +46,6 @@ values(18,"Rafael Uribe",18);
 insert into Zones (id,name,number)
 values(19,"Ciudad Bolivar",19);
 
-insert into Coordinate (id,latitude,longitude,Zone_id)
-values(1,4.710988599999999,-74.072092,null);
-insert into Coordinate (id,latitude,longitude,Zone_id)
-values(2,4.711777486983153,-74.07104712948808,null);
 
 insert into Coordinate (latitude,longitude,Zone_id)
 values(4.664781, -74.005831,1);
@@ -222,11 +218,11 @@ values(4.587184,-74.198924,19);
 insert into Coordinate (latitude,longitude,Zone_id)
 values(4.469108,-74.179355,19);	
 
-insert into Report (datereport,img,comment,weather,User_id,Zone_id,Coordinate_id,Publication_id)
-values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),"assets/img/rain","comment","rain",1,11,1,null);
+insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,like)
+values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),1,1,11,4.741931,-74.033557,1,3);
 
-insert into Report (datereport,img,comment,weather,User_id,Zone_id,Coordinate_id,Publication_id)
-values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),"assets/img/rain","comment","rain",2,11,2,null);
+insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,like)
+values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),1,2,11,4.741931,-74.057247,0,2);
 
 
 
