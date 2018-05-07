@@ -44,7 +44,7 @@ public class Report  implements java.io.Serializable {
     @Column(name = "dislike", nullable = false, length = 255)
     private int dislike;
 
-    @Column(name = "like", nullable = false, length = 255)
+    @Column(name = "likes", nullable = false, length = 255)
     private int like;
 
     /**
