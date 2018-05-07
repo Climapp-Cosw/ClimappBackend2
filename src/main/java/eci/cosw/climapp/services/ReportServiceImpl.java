@@ -34,8 +34,27 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     public Report createReport(Report rep) throws ServicesException{
+        insideZone(rep,rep.getLongitude(),rep.getLatitude());
         reportsRepository.save(rep);
         return rep;
+    }
+
+    private  void insideZone(Report r,double pointx,double pointy){
+        List<Zone> zones=zonesRepository.findAll();
+        for (int i=0;i<zones.size();i++){
+            List<Coordinate> coor=zones.get(i).getCoordinates();
+            boolean inside=false;
+            for (int i2 = 0, j = coor.size() - 1; i2 < coor.size(); j = i2++) {
+                if(((coor.get(i2).getLatitude() > pointy) != (coor.get(j).getLatitude() > pointy)) &&
+                        (pointx < (coor.get(j).getLongitude()-coor.get(i2).getLongitude()) *
+                                (pointy-coor.get(i2).getLatitude()) / (coor.get(j).getLatitude()-coor.get(i2).getLatitude()) + coor.get(i2).getLongitude()) )
+                    inside = !inside;
+            }
+            if(inside){
+                r.setZone(zones.get(i));
+                break;
+            }
+        }
     }
     @Override
     public void deleteReport(int id) {

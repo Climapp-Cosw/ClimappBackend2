@@ -3,6 +3,7 @@ package eci.cosw.climapp.restController;
 
 import eci.cosw.climapp.models.Report;
 import eci.cosw.climapp.models.User;
+import eci.cosw.climapp.models.Zone;
 import eci.cosw.climapp.services.ReportService;
 import eci.cosw.climapp.services.ServicesException;
 import eci.cosw.climapp.services.UserService;
@@ -29,6 +30,7 @@ public class ReportController {
         //u.getReport().add(report);
         return reportService.createReport(report);
     }
+
 
     @RequestMapping( value = "/likeReport/", method = RequestMethod.POST )
     public Report createReport(@PathVariable("lat") String lat,@PathVariable("lon") String lon) throws ServicesException {

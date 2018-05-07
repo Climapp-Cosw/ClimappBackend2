@@ -13,7 +13,6 @@
 
     <!-- Drop and re-create the database schema on startup -->
     <mapping class="eci.cosw.climapp.models.User"></mapping>
-    <mapping class="eci.cosw.climapp.models.Publication"></mapping>
     <mapping class="eci.cosw.climapp.models.Report"></mapping>
     <mapping class="eci.cosw.climapp.models.Zone"></mapping>
     <mapping class="eci.cosw.climapp.models.Coordinate"></mapping>
