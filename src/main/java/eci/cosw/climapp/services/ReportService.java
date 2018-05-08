@@ -25,4 +25,6 @@ public interface ReportService {
     public List<Report> getReports();
 
     public Report ReportByReportId(int id);
+
+    public Report ReportByUserId(int id);
 }

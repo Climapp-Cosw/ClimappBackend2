@@ -30,7 +30,7 @@ public class User implements Serializable{
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "confpaswd", nullable = false)
+    @Column(name = "confpasswd", nullable = false)
     private String confirmPassword;
 
     @Column(name = "img", nullable = false)
