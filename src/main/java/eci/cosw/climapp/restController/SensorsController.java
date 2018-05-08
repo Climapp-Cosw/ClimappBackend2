@@ -38,7 +38,7 @@ public class SensorsController {
             /*clima 0 lluvia- clima 1 soleado -clima 2 nublado -clima 3*/
             weather =1;
         }
-        if(report.equals(null)){
+        if(report==null){
             reportService.createReport(new Report(ip2,new java.util.Date(),lat, lng, weather, null,new Zone(),0,0));
         }else{
             report.setWeather(weather);
@@ -51,12 +51,13 @@ public class SensorsController {
         System.out.println("Rain: "+ water);
         int ip2=Integer.valueOf(ip.replace(".",""));
         Report report= reportService.ReportByReportId(ip2);
+        /*
         if(report.equals(null)){
             reportService.createReport(new Report(ip2,new java.util.Date(),lat, lng, 0, null,new Zone(),0,0));
         }else{
             report.setWeather(0);
             reportService.updateReport(report);
-        }
+        }*/
 		
     }
 	

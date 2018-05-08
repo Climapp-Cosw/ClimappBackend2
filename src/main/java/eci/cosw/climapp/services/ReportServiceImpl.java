@@ -34,12 +34,11 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     public Report createReport(Report rep) throws ServicesException{
-        insideZone(rep,rep.getLongitude(),rep.getLatitude());
-        reportsRepository.save(rep);
+        reportsRepository.save(insideZone(rep,rep.getLongitude(),rep.getLatitude()));
         return rep;
     }
 
-    private  void insideZone(Report r,double pointx,double pointy){
+    private  Report insideZone(Report r,double pointx,double pointy){
         List<Zone> zones=zonesRepository.findAll();
         for (int i=0;i<zones.size();i++){
             List<Coordinate> coor=zones.get(i).getCoordinates();
@@ -52,9 +51,10 @@ public class ReportServiceImpl implements ReportService{
             }
             if(inside){
                 r.setZone(zones.get(i));
-                break;
+                return r;
             }
         }
+        return null;
     }
     @Override
     public void deleteReport(int id) {
