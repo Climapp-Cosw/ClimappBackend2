@@ -51,13 +51,12 @@ public class SensorsController {
         System.out.println("Rain: "+ water);
         int ip2=Integer.valueOf(ip.replace(".",""));
         Report report= reportService.ReportByReportId(ip2);
-        /*
-        if(report.equals(null)){
+        if(report==null){
             reportService.createReport(new Report(ip2,new java.util.Date(),lat, lng, 0, null,new Zone(),0,0));
         }else{
             report.setWeather(0);
             reportService.updateReport(report);
-        }*/
+        }
 		
     }
 	
