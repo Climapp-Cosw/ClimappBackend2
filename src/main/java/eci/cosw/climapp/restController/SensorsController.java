@@ -46,7 +46,7 @@ public class SensorsController {
             weather =2;
         }
         if(user==null){
-            user=new User(ip,ip,ip,"",ip,0);
+            user=new User(ip,ip,ip,ip,0);
             userService.createUser(user);
             reportService.createReport(new Report(new java.util.Date(),lat, lng, weather, user,new Zone(),0,0));
         }else{
@@ -69,7 +69,7 @@ public class SensorsController {
             weather =2;
         }
         if(user==null){
-            user=new User(ip,ip,ip,"",ip,0);
+            user=new User(ip,ip,ip,ip,0);
             userService.createUser(user);
             reportService.createReport(new Report(new java.util.Date(),lat, lng, weather, user,new Zone(),0,0));
         }else{

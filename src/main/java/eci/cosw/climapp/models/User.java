@@ -37,18 +37,17 @@ public class User implements Serializable{
     @Column(name = "points", nullable = false)
     private int points;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "reportedUser")
-//    @Fetch(FetchMode.JOIN)
-//    private List<Report> report = new ArrayList<>();
-//
-//
-//    @ManyToMany
-//    @JoinTable(name = "FavoriteZone",
-//            joinColumns = @JoinColumn(name = "User_id" , referencedColumnName="id"),
-//            inverseJoinColumns = @JoinColumn(name = "Zone_id" , referencedColumnName="id")
-//    )
-//    private List<Zone> zones = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "reportedUser")
+    @Fetch(FetchMode.JOIN)
+    private List<Report> report = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "FavoriteZone",
+            joinColumns = @JoinColumn(name = "User_id" , referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "Zone_id" , referencedColumnName="id")
+    )
+    private List<Zone> zones = new ArrayList<>();
 
     public User() {
     }
@@ -59,7 +58,6 @@ public class User implements Serializable{
      * @param password
      * @param name
      * @param image
-     * @param confirmPassword
      * @param points
      */
     public User( String email, String password, String name, String image, int points ) {

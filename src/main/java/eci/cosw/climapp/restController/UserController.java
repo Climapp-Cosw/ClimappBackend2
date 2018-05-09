@@ -34,15 +34,11 @@ public class UserController  {
 
         String username = login.getEmail();
         String password = login.getPassword();
-        System.err.println("Entro aca 1");
         User user = userService.findUserByEmailAndPassword(username, password);
-        System.err.println("Entro aca 2");
         if ( user == null ){
             throw new ServletException( "Invalid User!" );
         }
-System.err.println("Entro aca 3");
         String pwd = user.getPassword();
-System.err.println("Entro aca 4");
         if ( !password.equals( pwd ) ){
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
