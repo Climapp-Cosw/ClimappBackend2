@@ -42,9 +42,7 @@ public class UserController  {
         if ( !password.equals( pwd ) ){
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
-System.err.println("Entro aca5");
         jwtToken = Jwts.builder().setSubject( username ).claim( "roles", "user" ).setIssuedAt( new Date() ).signWith(SignatureAlgorithm.HS256, "secretkey" ).compact();
-System.err.println("Entro aca 6");
         return new Token( jwtToken );
     }
 

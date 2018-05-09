@@ -33,8 +33,8 @@ public class Zone implements java.io.Serializable{
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "Zone_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "zone")
     @Fetch(FetchMode.JOIN)
     private List<Coordinate> coordinates=new ArrayList<>();
     

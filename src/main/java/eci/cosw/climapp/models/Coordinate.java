@@ -93,6 +93,16 @@ public class Coordinate implements java.io.Serializable {
         this.id = id;
     }
 
+
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
+
     public double distCoordenate(Coordinate otherCoordinate){
         double ratio = 6378.0F;//Km
         double dLat = Math.toRadians(Double.valueOf(otherCoordinate.getLatitude()) - Double.valueOf(this.getLatitude()));

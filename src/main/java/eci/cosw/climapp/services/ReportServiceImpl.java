@@ -9,6 +9,8 @@ import eci.cosw.climapp.repositories.ZonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,32 +36,45 @@ public class ReportServiceImpl implements ReportService{
         return rep;
     }
 
-    private  Report insideZone(Report r,double pointx,double pointy){
+    private  Report insideZone(Report r,double lng,double lat){
         List<Zone> zones=zonesRepository.findAll();
+        boolean inside=false;
+        for (int i=0;i<zones.size() && !inside;i++){
+            List<Coordinate> coors=zones.get(i).getCoordinates();
 
-        for (int i=0;i<zones.size();i++){
-            List<Coordinate> coor=zones.get(i).getCoordinates();
-            boolean inside=false;
-
-            for (int i2 = 0, j = coor.size() - 1; i2 < coor.size(); i2++) {
-                if((coor.get(i2).getLatitude() < pointy && coor.get(j).getLatitude() >=pointy || coor.get(j).getLatitude()<pointy && coor.get(i2).getLatitude()>=pointy )
-                        &&(coor.get(i2).getLongitude()<=pointx||coor.get(j).getLongitude()<=pointx  )){
-                    if(coor.get(i2).getLongitude()+(pointy-coor.get(i2).getLatitude())/(coor.get(j).getLatitude()-coor.get(i2).getLatitude())*
-                            (coor.get(j).getLongitude()-coor.get(i2).getLongitude())<pointx){
-                        inside=!inside;
-                    }
-                }
-                j =i2;
-            }
-            System.out.print(coor.toString()+"  lkrbdfvkibdfibf "+inside);
-            if(inside){
+            if((inLongitudeLatitude(lat, coors.get(0).getLatitude(),coors.get(2).getLatitude()) || inLongitudeLatitude(lat, coors.get(1).getLatitude(),coors.get(3).getLatitude()) )   &&
+                    (  inLongitudeLatitude(lng,coors.get(1).getLongitude() , coors.get(0).getLongitude()) || inLongitudeLatitude(lng,coors.get(3).getLongitude() , coors.get(2).getLongitude())  ) ){
                 r.setZone(zones.get(i));
-                return r;
+                inside= true;
             }
+
         }
-        r.setZone(zonesRepository.findZoneById(11));
-        return null;
+        if (!inside){
+            return null;
+            /*Zone z=new Zone(zones.size()+1,zones.size()+1,"Otra", new ArrayList<Coordinate>(Arrays.asList(new Coordinate(0,lat,lng))));
+            z.getCoordinates().get(0).setZone(z);
+            r.setZone(z);*/
+        }
+
+        return r;
     }
+
+    /**
+     * Metodo encargado de evaluar la longitud (longitud 1 es mayor a longitud 2)
+     * @return boolean <br>
+     * <b>true</b>: Si la longitud a evaluar esta entre las dos ubicaciones<br>
+     * <b>false</b>: SI la longitud no esta entre las dos ubicaciones<br>
+     */
+    private boolean inLongitudeLatitude(double longitudEvaluar, double longitud1, double longitud2){
+
+        if(longitud2>longitud1){
+            longitud1 = longitud2;
+            longitud2 = longitud1;
+        }
+
+        return longitudEvaluar<=longitud1 && longitudEvaluar>=longitud2;
+    }
+
     @Override
     public void deleteReport(int id) {
         reportsRepository.deleteById(id);
