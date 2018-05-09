@@ -1,11 +1,11 @@
-insert into Users (email,name,password,img,confpasswd,points)
-values("juan.arevalo.merchan@gmail.com","Juan Pablo","123","motos/esp/images/Moto2.png","123",10);
+insert into Users (email,name,password,img,points)
+values("juan.arevalo.merchan@gmail.com","Juan Pablo","123","motos/esp/images/Moto2.png",10);
 
-insert into Users (email,name,password,img,confpasswd,points)
-values("prueba@mail.com","Laura","password","http://www.your3dsource.com/images/facepic1.jpeg","password",5);
+insert into Users (email,name,password,img,points)
+values("prueba@mail.com","Laura","password","http://www.your3dsource.com/images/facepic1.jpeg",5);
 
-insert into Users (email,name,password,img,confpasswd,points)
-values("prueba2@mail.com","Lucas","password","http://www.your3dsource.com/images/facepic2.jpeg","password",0);
+insert into Users (email,name,password,img,points)
+values("prueba2@mail.com","Lucas","password","http://www.your3dsource.com/images/facepic2.jpeg",0);
 
 insert into Zones (id,name,number)
 values(1,"Usaquen",1);

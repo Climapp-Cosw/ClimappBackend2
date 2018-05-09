@@ -35,11 +35,10 @@ CREATE TABLE Report (
 -- Table: User
 CREATE TABLE Users (
     id int NOT NULL AUTO_INCREMENT,
-    email varchar(20) NOT NULL,
+    email varchar(50) NOT NULL,
     name varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
     img varchar(100) NOT NULL,
-    confpasswd varchar(20) NOT NULL,
 	points int NOT NULL,
     CONSTRAINT User_pk PRIMARY KEY (id)
 );
