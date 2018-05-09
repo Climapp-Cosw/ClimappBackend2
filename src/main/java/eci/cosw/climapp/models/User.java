@@ -42,6 +42,7 @@ public class User implements Serializable{
     @Fetch(FetchMode.JOIN)
     private List<Report> report = new ArrayList<>();
 
+    
     @ManyToMany
     @JoinTable(name = "FavoriteZone",
             joinColumns = @JoinColumn(name = "User_id" , referencedColumnName="id"),
@@ -157,49 +158,47 @@ public class User implements Serializable{
         this.image = image;
     }
 
-    /**
+    /*
      * @return the reports
      */
-//    public List<Report> getReport() {
-//        return report;
-//    }
-//
-//    /**
-//     * @param report the reports to set
-//     */
-//    public void setReport(List<Report> report) {
-//        this.report= report;
-//    }
-//
-//    /**
-//     * @return the zones
-//     */
-//    public List<Zone> getZones() {
-//        return zones;
-//    }
-//
-//    /**
-//     * @param zones the zones to set
-//     */
-//    public void setZones(List<Zone> zones) {
-//        this.zones = zones;
-//    }
-//    
-//    /**
-//     * Add zone to array
-//     * @param zone 
-//     */
-//    public void addZone(Zone zone){
-//        zones.add(zone);
-//    }
-//    
-//    /**
-//     * Delete zone of array
-//     * @param zone 
-//     */
-//    public void deleteZone(Zone zone){
-//        zones.remove(zone);
-//    }
+    public List<Report> getReport() {
+        return report; }
+    /**
+     * @param report the reports to set
+     */
+    public void setReport(List<Report> report) {
+        this.report= report;
+    }
+
+    /**
+     * @return the zones
+     */
+    public List<Zone> getZones() {
+        return zones;
+    }
+
+    /**
+     * @param zones the zones to set
+     */
+   public void setZones(List<Zone> zones) {
+        this.zones = zones;
+    }
+
+    /**
+     * Add zone to array
+     * @param zone
+     */
+    public void addZone(Zone zone){
+        zones.add(zone);
+    }
+
+    /**
+     * Delete zone of array
+     * @param zone
+     */
+    public void deleteZone(Zone zone){
+        zones.remove(zone);
+    }
 
     public int getPoints() {
         return points;
