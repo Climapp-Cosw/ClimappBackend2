@@ -30,8 +30,6 @@ public class User implements Serializable{
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "confpaswd", nullable = false)
-    private String confirmPassword;
 
     @Column(name = "img", nullable = false)
     private String image;
@@ -39,18 +37,18 @@ public class User implements Serializable{
     @Column(name = "points", nullable = false)
     private int points;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "reportedUser")
-    @Fetch(FetchMode.JOIN)
-    private List<Report> report = new ArrayList<>();
-
-
-    @ManyToMany
-    @JoinTable(name = "FavoriteZone",
-            joinColumns = @JoinColumn(name = "User_id" , referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name = "Zone_id" , referencedColumnName="id")
-    )
-    private List<Zone> zones = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "reportedUser")
+//    @Fetch(FetchMode.JOIN)
+//    private List<Report> report = new ArrayList<>();
+//
+//
+//    @ManyToMany
+//    @JoinTable(name = "FavoriteZone",
+//            joinColumns = @JoinColumn(name = "User_id" , referencedColumnName="id"),
+//            inverseJoinColumns = @JoinColumn(name = "Zone_id" , referencedColumnName="id")
+//    )
+//    private List<Zone> zones = new ArrayList<>();
 
     public User() {
     }
@@ -64,12 +62,11 @@ public class User implements Serializable{
      * @param confirmPassword
      * @param points
      */
-    public User( String email, String password, String name, String image, String confirmPassword,int points ) {
+    public User( String email, String password, String name, String image, int points ) {
         this.email = email;
         this.password = password;
         this.image = image;
         this.name = name;
-        this.confirmPassword = confirmPassword;
         this.points=points;
     }
 
@@ -88,7 +85,6 @@ public class User implements Serializable{
         this.password = password;
         this.image = image;
         this.name = name;
-        this.confirmPassword = confirmPassword;
         this.id=id;
         this.points=points;
     }
@@ -164,62 +160,48 @@ public class User implements Serializable{
     }
 
     /**
-     * @return the confirmPassword
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
      * @return the reports
      */
-    public List<Report> getReport() {
-        return report;
-    }
-
-    /**
-     * @param report the reports to set
-     */
-    public void setReport(List<Report> report) {
-        this.report= report;
-    }
-
-    /**
-     * @param confirmPassword the confirmPassword to set
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    /**
-     * @return the zones
-     */
-    public List<Zone> getZones() {
-        return zones;
-    }
-
-    /**
-     * @param zones the zones to set
-     */
-    public void setZones(List<Zone> zones) {
-        this.zones = zones;
-    }
-    
-    /**
-     * Add zone to array
-     * @param zone 
-     */
-    public void addZone(Zone zone){
-        zones.add(zone);
-    }
-    
-    /**
-     * Delete zone of array
-     * @param zone 
-     */
-    public void deleteZone(Zone zone){
-        zones.remove(zone);
-    }
+//    public List<Report> getReport() {
+//        return report;
+//    }
+//
+//    /**
+//     * @param report the reports to set
+//     */
+//    public void setReport(List<Report> report) {
+//        this.report= report;
+//    }
+//
+//    /**
+//     * @return the zones
+//     */
+//    public List<Zone> getZones() {
+//        return zones;
+//    }
+//
+//    /**
+//     * @param zones the zones to set
+//     */
+//    public void setZones(List<Zone> zones) {
+//        this.zones = zones;
+//    }
+//    
+//    /**
+//     * Add zone to array
+//     * @param zone 
+//     */
+//    public void addZone(Zone zone){
+//        zones.add(zone);
+//    }
+//    
+//    /**
+//     * Delete zone of array
+//     * @param zone 
+//     */
+//    public void deleteZone(Zone zone){
+//        zones.remove(zone);
+//    }
 
     public int getPoints() {
         return points;

@@ -57,12 +57,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Zone> addZone(Zone zone, String email) throws ServicesException{
-        User u=findUserByEmail(email);
-        List<Zone> z=u.getZones();
-        z.add(zone);
-        u.setZones(z);
-        usersRepository.save(u);
-        return zonesRepository.getFavoriteZones(email);
+        return null;
+//        User u=findUserByEmail(email);
+//        List<Zone> z=u.getZones();
+//        z.add(zone);
+//        u.setZones(z);
+//        usersRepository.save(u);
+//        return zonesRepository.getFavoriteZones(email);
     }
 
     @Override

@@ -34,21 +34,21 @@ public class UserController  {
 
         String username = login.getEmail();
         String password = login.getPassword();
-
+        System.err.println("Entro aca 1");
         User user = userService.findUserByEmailAndPassword(username, password);
-
+        System.err.println("Entro aca 2");
         if ( user == null ){
             throw new ServletException( "Invalid User!" );
         }
-
+System.err.println("Entro aca 3");
         String pwd = user.getPassword();
-
+System.err.println("Entro aca 4");
         if ( !password.equals( pwd ) ){
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
-
+System.err.println("Entro aca5");
         jwtToken = Jwts.builder().setSubject( username ).claim( "roles", "user" ).setIssuedAt( new Date() ).signWith(SignatureAlgorithm.HS256, "secretkey" ).compact();
-
+System.err.println("Entro aca 6");
         return new Token( jwtToken );
     }
 
@@ -59,11 +59,11 @@ public class UserController  {
         return userService.findUserByEmail(email);
     }
 
-    @RequestMapping( value = "/{email}/reports", method = RequestMethod.GET )
-    public List<Report> getReportsByUser(@PathVariable("email") String email){
-        System.out.println("Correo: "+email);
-        return userService.findUserByEmail(email).getReport();
-    }
+//    @RequestMapping( value = "/{email}/reports", method = RequestMethod.GET )
+//    public List<Report> getReportsByUser(@PathVariable("email") String email){
+//        System.out.println("Correo: "+email);
+//        return userService.findUserByEmail(email).getReport();
+//    }
 
     @RequestMapping( value = "/updateProfile/{id}", method = RequestMethod.POST )
     public User updateUser(@RequestBody User updateuser, @PathVariable("id") int id) throws ServicesException {
@@ -91,12 +91,6 @@ public class UserController  {
         }
         else if(user.getPassword()==null || user.getPassword().trim().isEmpty()){
             throw new ServicesException("Please fill in password");
-        }
-        else if(user.getConfirmPassword()==null || user.getConfirmPassword().trim().isEmpty()){
-            throw new ServicesException("Please fill in Confirm password");
-        }
-        else if(!user.getConfirmPassword().equals(user.getPassword())){
-            throw new ServicesException("Check your password and your confirm password. They are different");
         }
         else{
             return userService.createUser(user);
