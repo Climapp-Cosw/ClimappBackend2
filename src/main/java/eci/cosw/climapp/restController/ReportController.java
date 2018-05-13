@@ -7,6 +7,7 @@ import eci.cosw.climapp.models.Zone;
 import eci.cosw.climapp.services.ReportService;
 import eci.cosw.climapp.services.ServicesException;
 import eci.cosw.climapp.services.UserService;
+import eci.cosw.climapp.services.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,11 @@ public class ReportController {
     private ReportService reportService;
 
     @Autowired
-    private UserService userService;
+    private ZoneService zoneService;
 
-    @RequestMapping( value = "/newreport/{lat}&{lon}", method = RequestMethod.POST )
-    public Report createReport(@RequestBody Report report, @PathVariable("lat") String lat,@PathVariable("lon") String lon) throws ServicesException {
-        report.setLatitude(Double.parseDouble(lat));
-        report.setLongitude(Double.parseDouble(lon));
-        //User u = userService.getUser(report.getReportedUser().getId());
-        //u.getReport().add(report);
+    @RequestMapping( value = "/newReport", method = RequestMethod.POST )
+    public Report createReport(@RequestBody Report report) throws ServicesException {
+        report.setZone(zoneService.insideZone(report.getLongitude(), report.getLatitude()));
         return reportService.createReport(report);
     }
 

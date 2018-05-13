@@ -23,13 +23,26 @@ CREATE TABLE Report (
     id int NOT NULL AUTO_INCREMENT,
     datereport datetime NOT NULL,
     weather varchar(20) NOT NULL,
-    User_id int,
+    User_id int not null,
     Zone_id int NOT NULL,
     latitude double NOT NULL,
     longitude double NOT NULL,
 	dislike int NOT NULL,
-    likes int NOT NULL,
+	likes int NOT NULL,
+	rain int NOT NULL,
     CONSTRAINT Report_pk PRIMARY KEY (id)
+);
+-- Table: Sensor
+CREATE TABLE Sensor (
+    id int NOT NULL AUTO_INCREMENT,
+    temperature float NOT NULL,
+    pollution float NOT NULL,
+    humidity float NOT NULL,
+    Zone_id int NOT NULL,
+    latitude double NOT NULL,
+    longitude double NOT NULL,
+	rain boolean NOT NULL,
+    CONSTRAINT Sensor_pk PRIMARY KEY (id)
 );
 
 -- Table: User
@@ -76,6 +89,10 @@ ALTER TABLE Report ADD CONSTRAINT Report_User FOREIGN KEY Report_User (User_id)
 
 -- Reference: Report_Zone (table: Report)
 ALTER TABLE Report ADD CONSTRAINT Report_Zone FOREIGN KEY Report_Zone (Zone_id)
+    REFERENCES Zones (id);
+
+-- Reference: Sensor_Zone (table: Sensor)
+ALTER TABLE Sensor ADD CONSTRAINT Sensor_Zone FOREIGN KEY Sensor_Zone (Zone_id)
     REFERENCES Zones (id);
 
 -- End of file.
