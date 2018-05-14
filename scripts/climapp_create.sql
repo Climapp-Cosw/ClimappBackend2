@@ -22,7 +22,7 @@ CREATE TABLE FavoriteZone (
 CREATE TABLE Report (
     id int NOT NULL AUTO_INCREMENT,
     datereport datetime NOT NULL,
-    weather varchar(20) NOT NULL,
+    weather int NOT NULL,
     User_id int not null,
     Zone_id int NOT NULL,
     latitude double NOT NULL,

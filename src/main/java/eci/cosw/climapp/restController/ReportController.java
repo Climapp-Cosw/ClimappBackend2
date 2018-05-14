@@ -11,6 +11,7 @@ import eci.cosw.climapp.services.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,9 +25,10 @@ public class ReportController {
     private ZoneService zoneService;
 
     @RequestMapping( value = "/newReport", method = RequestMethod.POST )
-    public Report createReport(@RequestBody Report report) throws ServicesException {
+    public void createReport(@RequestBody Report report) throws ServicesException {
+        report.setDateTimeReport(new Date());
         report.setZone(zoneService.insideZone(report.getLongitude(), report.getLatitude()));
-        return reportService.createReport(report);
+        reportService.createReport(report);
     }
 
 
