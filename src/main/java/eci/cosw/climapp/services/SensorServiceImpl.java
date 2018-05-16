@@ -6,6 +6,8 @@ import eci.cosw.climapp.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SensorServiceImpl implements SensorService {
 
@@ -20,5 +22,10 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public Sensor findById(int id){
         return sensorRepository.SensorFindById(id);
+    }
+
+    @Override
+    public List<Sensor> getSensors(){
+        return sensorRepository.findAll();
     }
 }

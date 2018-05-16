@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
+import java.util.List;
 
 /**
  *
@@ -73,10 +74,18 @@ public class SensorsController {
         }
         sensorService.createSensor(sns);
     }
+
+
 	
 	@RequestMapping( value = "/temperature/{ip}/{lat}&{lng}/{tempReached}", method = RequestMethod.POST )
     public void SensorTemp(@PathVariable("tempReached") String temp , @PathVariable("ip") String ip,@PathVariable("lat") double lat,@PathVariable("lat") double lng) throws ServletException, ServicesException {
         System.out.println("Temperature reached: "+ temp);	
 		/**no implementado**/
+    }
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public List<Sensor> getSensors() throws ServicesException {
+
+        return sensorService.getSensors();
     }
 }
