@@ -21,6 +21,12 @@ public interface ZoneService {
     public List<Zone> getZones();
 
     /**
+     * @param lat
+     * @param lng
+     */
+    public Zone insideZone(double lat,double lng) throws ServicesException;
+
+    /**
      * @param name
      * @return
      */

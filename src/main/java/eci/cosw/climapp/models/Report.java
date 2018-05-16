@@ -1,7 +1,9 @@
 package eci.cosw.climapp.models;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -47,6 +49,9 @@ public class Report  implements java.io.Serializable {
     @Column(name = "likes", nullable = false, length = 255)
     private int like;
 
+    @Column(name = "rain", nullable = false, length = 255)
+    private int rain;
+
     /**
      *
      * @param id
@@ -82,7 +87,7 @@ public class Report  implements java.io.Serializable {
      * @param dislike
      * @param like
      */
-    public Report(Date dateTimeReport, double lat, double lon, int clima, User u, Zone z,int dislike,int like) {
+    public Report(Date dateTimeReport, double lat, double lon, int clima, User u, Zone z,int rain,int dislike,int like) {
         this.dateTimeReport = dateTimeReport;
         this.weather = clima;
         this.reportedUser = u;
@@ -91,6 +96,7 @@ public class Report  implements java.io.Serializable {
         this.latitude = lat;
         this.dislike = dislike;
         this.like = like;
+        this.rain = rain;
     }
 
     public Report() {
@@ -108,6 +114,14 @@ public class Report  implements java.io.Serializable {
      */
     public User getReportedUser() {
         return reportedUser;
+    }
+
+    public int getRain() {
+        return rain;
+    }
+
+    public void setRain(int rain) {
+        this.rain = rain;
     }
 
     /**

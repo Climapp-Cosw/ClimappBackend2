@@ -218,11 +218,13 @@ values(4.587184,-74.198924,19);
 insert into Coordinate (latitude,longitude,Zone_id)
 values(4.469108,-74.179355,19);	
 
-insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,likes)
-values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),1,1,11,4.741931,-74.033557,1,3);
+insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,likes,rain)
+values (STR_TO_DATE('2014-3-27 01:00:00','yyyy-MM-dd HH:mm:ss'),1,1,11,4.741931,-74.033557,1,3,0);
 
-insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,likes)
-values (STR_TO_DATE('2014-03-27 01:00:00','%Y-%m-%d %H:%m:%s'),1,2,11,4.741931,-74.057247,0,2);
+insert into Report (datereport,weather,User_id,Zone_id,latitude,longitude,dislike,likes,rain)
+values (STR_TO_DATE('2014-3-27 01:00:00','yyyy-MM-dd HH:mm:ss'),1,2,11,4.741931,-74.057247,0,2,0);
+
+
 
 
 

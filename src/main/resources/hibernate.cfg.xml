@@ -16,6 +16,7 @@
     <mapping class="eci.cosw.climapp.models.Report"></mapping>
     <mapping class="eci.cosw.climapp.models.Zone"></mapping>
     <mapping class="eci.cosw.climapp.models.Coordinate"></mapping>
+    <mapping class="eci.cosw.climapp.models.Sensor"></mapping>
   </session-factory>
 
     
