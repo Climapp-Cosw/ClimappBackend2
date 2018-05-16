@@ -16,12 +16,12 @@ public class AppClimappApplication {
 	}
 	
 	@Bean
-	public FilterRegistrationBean jwtFilter()
-	{
-		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		registrationBean.setFilter( new JwtFilter() );
-		registrationBean.addUrlPatterns( "/api/*" );
-
-		return registrationBean;
-	}
+    public FilterRegistrationBean jwtFilter()
+    {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter( new JwtFilter() );
+        registrationBean.addUrlPatterns( "/reportes/*" );
+        //registrationBean.addUrlPatterns( "/users/*" );
+        return registrationBean;
+    }
 }
