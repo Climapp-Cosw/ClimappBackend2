@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://climappandroid.cl8983r8q2j9.us-west-2.rds.amazonaws.com?"</property>
+    <property name="hibernate.connection.url">jdbc:mysql://climappandroid.cl8983r8q2j9.us-west-2.rds.amazonaws.com:3306/climappDBAndroid?"</property>
     <property name="hibernate.connection.username">admin</property>
     <property name="hibernate.connection.password">Climapp123</property>
     <property name="show_sql">true</property>
