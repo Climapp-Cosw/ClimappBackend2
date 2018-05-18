@@ -18,8 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UsersRepository usersRepository;
-    @Autowired
-    private ZonesRepository zonesRepository;
+
 
 
     @Override
@@ -55,19 +54,5 @@ public class UserServiceImpl implements UserService {
         return usersRepository.findUserByEmailAndPassword(email, password);
     }
 
-    @Override
-    public List<Zone> addZone(Zone zone, String email) throws ServicesException{
-        User u =usersRepository.findUserByEmail(email);
-        List<Zone> z=u.getZones();
-        z.add(zone);
-        u.setZones(z);
-        usersRepository.save(u);
-        return zonesRepository.getFavoriteZones(email);
-    }
 
-    @Override
-    public List<Zone> deleteZone(Zone zone,  String email) {
-        usersRepository.deleteZone(zone.getName(),email);
-        return zonesRepository.getFavoriteZones(email);
-    }
 }

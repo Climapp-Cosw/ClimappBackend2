@@ -22,6 +22,6 @@ public interface ZonesRepository extends JpaRepository <Zone,Integer >{
     @Query(value ="select * from Zones z where z.id = ?1", nativeQuery = true)
     public Zone findZoneById(int id);
 
-    @Query(value ="select z.id, z.name, z.number from Zones z join FavoriteZone as fz on z.id=fz.Zone_id join Users on fz.User_id=Users.id where Users.email = ?1", nativeQuery = true)
+    @Query(value ="select * from Zones z join FavoriteZone as fz on z.id=fz.Zone_id join Users on fz.User_id=Users.id where Users.email = ?1", nativeQuery = true)
     public List<Zone> getFavoriteZones(String email);
 }

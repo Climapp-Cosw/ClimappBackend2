@@ -29,17 +29,22 @@ public class ZoneController {
     private UserService userServices;
     
     @RequestMapping( value = "/", method = RequestMethod.GET )
-    public List<Zone> getZones(){
+    public List<Zone> getZones() throws ServicesException {
         return zoneServices.getZones();
     }
 
     @RequestMapping( value = "/favorites/{email}", method = RequestMethod.GET )
-    public List<Zone> getFavoriteZones(@PathVariable("email") String email){
+    public List<Zone> getFavoriteZones(@PathVariable("email") String email) throws ServicesException {
         return zoneServices.getFavoriteZones(email);
     }
 
+    @RequestMapping( value = "/{email}", method = RequestMethod.POST )
+    public List<Zone> addZone(@RequestBody Zone zone, @PathVariable("email") String email) throws ServicesException {
+        return zoneServices.addZone(zone, email);
+    }
+
     @RequestMapping( value = "/deletedFavorites/{email}", method = RequestMethod.POST )
-    public List<Zone> deleteFavoriteZone(@RequestBody Zone zone, @PathVariable("email") String email) throws ServletException, ServicesException {
-        return userServices.deleteZone(zone, email);
+    public List<Zone> deleteFavoriteZone(@RequestBody Zone zone, @PathVariable("email") String email) throws  ServicesException {
+        return zoneServices.deleteZone(zone, email);
     }
 }

@@ -18,7 +18,7 @@ public interface ZoneService {
      * 
      * @return 
      */
-    public List<Zone> getZones();
+    public List<Zone> getZones()throws ServicesException;
 
     /**
      * @param lat
@@ -30,7 +30,7 @@ public interface ZoneService {
      * @param name
      * @return
      */
-    public Zone getZone(String name);
+    public Zone getZone(String name)  throws ServicesException;
 
     /**
      *
@@ -38,7 +38,25 @@ public interface ZoneService {
      */
     public int getNumZones();
 
-    public List<Zone> getFavoriteZones(String email);
+    public List<Zone> getFavoriteZones(String email)  throws ServicesException;
+
+    /**
+     *
+     * @param zone
+     * @param email
+     * @return
+     * @throws eci.cosw.climapp.services.ServicesException
+     */
+    public List<Zone> addZone(Zone zone, String email) throws ServicesException;
+
+    /**
+     *
+     * @param zone
+     * @param email
+     * @return
+     * @throws eci.cosw.climapp.services.ServicesException
+     */
+    public List<Zone> deleteZone(Zone zone, String email) throws ServicesException;
 
     
     

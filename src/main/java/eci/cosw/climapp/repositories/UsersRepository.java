@@ -33,5 +33,6 @@ public interface UsersRepository extends JpaRepository <User,Integer>{
     @Transactional(readOnly=false)
     @Query(value = "delete fz from FavoriteZone as fz join Zones as z on fz.Zone_id=z.id join Users on fz.User_id=Users.id where Users.email = ?2 and z.name=?1", nativeQuery = true )
     void deleteZone(String name, String email);
+
 }
 

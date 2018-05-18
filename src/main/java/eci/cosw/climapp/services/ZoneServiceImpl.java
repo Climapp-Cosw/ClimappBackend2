@@ -6,7 +6,9 @@
 package eci.cosw.climapp.services;
 
 import eci.cosw.climapp.models.Coordinate;
+import eci.cosw.climapp.models.User;
 import eci.cosw.climapp.models.Zone;
+import eci.cosw.climapp.repositories.UsersRepository;
 import eci.cosw.climapp.repositories.ZonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class ZoneServiceImpl implements ZoneService{
 
     @Autowired
     private ZonesRepository zonesRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
 
     public ZoneServiceImpl(){
@@ -49,6 +54,22 @@ public class ZoneServiceImpl implements ZoneService{
     public Zone getZone(String name) {
         //implementar
         return null;
+    }
+
+    @Override
+    public List<Zone> addZone(Zone zone, String email) throws ServicesException{
+        User u =usersRepository.findUserByEmail(email);
+        List<Zone> z=u.getZones();
+        z.add(zone);
+        u.setZones(z);
+        usersRepository.saveAndFlush(u);
+        return zonesRepository.getFavoriteZones(email);
+    }
+
+    @Override
+    public List<Zone> deleteZone(Zone zone,  String email) {
+        usersRepository.deleteZone(zone.getName(),email);
+        return zonesRepository.getFavoriteZones(email);
     }
 
     public  Zone insideZone(double lng,double lat){

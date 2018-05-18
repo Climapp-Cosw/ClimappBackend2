@@ -24,7 +24,7 @@ public class UserController  {
     @Autowired
     private UserService userService;
     @RequestMapping( value = "/login", method = RequestMethod.POST )
-    public Token login( @RequestBody User login ) throws ServletException {
+    public Token login( @RequestBody User login ) throws ServletException, ServicesException {
 
         String jwtToken = "";
 
@@ -48,7 +48,7 @@ public class UserController  {
 
     
     @RequestMapping( value = "/{email}", method = {RequestMethod.GET,RequestMethod.POST} )
-    public User getUsersByEmail(@PathVariable("email") String email){
+    public User getUsersByEmail(@PathVariable("email") String email) throws ServicesException {
         System.out.println("Correo: "+email);
         return userService.findUserByEmail(email);
     }
@@ -90,15 +90,9 @@ public class UserController  {
             return userService.createUser(user);
         }
     }
-    
-
-    @RequestMapping( value = "/zones/{email}", method = RequestMethod.POST )
-    public List<Zone> addZone(@RequestBody Zone zone, @PathVariable("email") String email) throws ServletException, ServicesException {
-        return userService.addZone(zone, email);
-    }
 
     @RequestMapping( value = "/id/{id}", method = RequestMethod.GET )
-    public User getUsersById(@PathVariable("id") int id){
+    public User getUsersById(@PathVariable("id") int id) throws ServicesException {
         System.out.println("Id: "+id);
         return userService.findUserById(id);
     }

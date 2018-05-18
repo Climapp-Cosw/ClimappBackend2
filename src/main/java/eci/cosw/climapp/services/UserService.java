@@ -34,41 +34,23 @@ public interface UserService {
      * @param user
      * @return
      */
-    public User createUser(User user);
+    public User createUser(User user) throws ServicesException;
 
     /**
      * @param email
      * @return
      */
-    public User findUserByEmail(String email);
+    public User findUserByEmail(String email) throws ServicesException;
     /**
      * @param id
      * @return
      */
-    public User findUserById(int id);
+    public User findUserById(int id) throws ServicesException;
     /**
      * @param email
      * @param password
      * @return
      */
-    public User findUserByEmailAndPassword(String email, String password);
-    
-    /**
-     * 
-     * @param zone
-     * @param email
-     * @return 
-     * @throws eci.cosw.climapp.services.ServicesException
-     */
-    public List<Zone> addZone(Zone zone, String email) throws ServicesException;
-
-    /**
-     * 
-     * @param zone
-     * @param email
-     * @return 
-     * @throws eci.cosw.climapp.services.ServicesException
-     */
-    public List<Zone> deleteZone(Zone zone, String email) throws ServicesException;
+    public User findUserByEmailAndPassword(String email, String password) throws ServicesException;
 
 }
