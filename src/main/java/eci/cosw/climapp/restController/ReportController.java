@@ -32,11 +32,10 @@ public class ReportController {
     }
 
 
-    @RequestMapping( value = "/likeReport/", method = RequestMethod.POST )
-    public Report createReport(@PathVariable("lat") String lat,@PathVariable("lon") String lon) throws ServicesException {
-        //User u = userService.getUser(report.getReportedUser().getId());
-        //u.getReport().add(report);
-        return null;
+    @RequestMapping( value = "/", method = RequestMethod.POST )
+    public Report updateReport(@RequestBody Report report) throws ServicesException {
+        reportService.updateReport(report);
+        return report;
     }
 
     @RequestMapping( value = "/", method = RequestMethod.GET )

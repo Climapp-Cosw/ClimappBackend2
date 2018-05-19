@@ -52,7 +52,7 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     public void updateReport(Report r) {
-        reportsRepository.save(r);
+        reportsRepository.saveAndFlush(r);
     }
 
     @Override
