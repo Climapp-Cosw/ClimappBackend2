@@ -34,6 +34,7 @@ public class ReportController {
 
     @RequestMapping( value = "/", method = RequestMethod.POST )
     public Report updateReport(@RequestBody Report report) throws ServicesException {
+        report.setDateTimeReport(reportService.ReportByReportId(report.getId()).getDateTimeReport());
         reportService.updateReport(report);
         return report;
     }

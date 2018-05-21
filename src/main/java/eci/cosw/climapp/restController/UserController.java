@@ -71,6 +71,14 @@ public class UserController  {
 
 
     }
+    @RequestMapping( value = "/points/{id}", method = RequestMethod.POST)
+    public User updateUser2(@PathVariable("id") int id) throws ServicesException {
+        User user= userService.findUserById(id);
+        user.setPoints(user.getPoints()+1);
+        System.out.print("relñdopfvfdodf"+id+""+user.getPoints());
+        userService.createUser(user);
+        return user;
+    }
     
     @RequestMapping( value = "/", method = RequestMethod.POST )
     public User setUsers(@RequestBody User user) throws ServicesException {
