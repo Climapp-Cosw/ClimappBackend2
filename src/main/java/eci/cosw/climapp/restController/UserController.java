@@ -53,11 +53,6 @@ public class UserController  {
         return userService.findUserByEmail(email);
     }
 
-//    @RequestMapping( value = "/{email}/reports", method = RequestMethod.GET )
-//    public List<Report> getReportsByUser(@PathVariable("email") String email){
-//        System.out.println("Correo: "+email);
-//        return userService.findUserByEmail(email).getReport();
-//    }
 
     @RequestMapping( value = "/updateProfile/{id}", method = RequestMethod.POST )
     public User updateUser(@RequestBody User updateuser, @PathVariable("id") int id) throws ServicesException {
